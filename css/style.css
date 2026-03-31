@@ -312,13 +312,29 @@ h1, h2, h3, h4, h5, h6 {
 .unified-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.7) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.45) 100%);
 }
 
 .bg-img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center;
+}
+
+/* Animated Kite Element */
+.kite-parallax-wrapper {
+    position: absolute;
+    bottom: 35%;
+    right: 30%;
+    z-index: 5;
+    pointer-events: none; /* Prevents blocking clicks to lower elements */
+}
+.floating-kite {
+    width: clamp(250px, 30vw, 450px);
+    filter: drop-shadow(0 20px 35px rgba(0,0,0,0.25));
+}
+.text-parallax-wrapper {
+    width: 100%;
 }
 
 .hero-screen {
@@ -790,65 +806,187 @@ h1, h2, h3, h4, h5, h6 {
     border-top: none;
 }
 
-/* Gallery */
+/* Gallery Custom Layout */
 .gallery-section {
-    background-color: var(--clr-bg-light);
+    background-color: #F4F4F4;
     overflow: hidden;
+    padding: 80px 0;
+}
+.gallery-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+.gallery-header-title {
+    color: #070A27;
+    font-family: 'Michroma', sans-serif;
+    font-size: clamp(28px, 4vw, 45px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: clamp(38px, 5vw, 50px);
+    text-transform: uppercase;
+    text-align: left;
+}
+.gallery-title-wrapper, .gallery-desc-wrapper {
+    flex: 1;
 }
 .gallery-slider {
     width: 100%;
-    padding-bottom: 50px;
 }
-.card-slide {
-    /* Removed custom width to let Swiper slidePerView configuration manage structural flow accurately */
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    opacity: 0.5;
-    transform: scale(0.9);
-}
-.swiper-slide-active {
-    opacity: 1;
-    transform: scale(1);
-}
-.img-wrapper {
+.custom-gallery-slide .img-wrapper {
+    border-radius: 0;
+    box-shadow: none;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-right: 2px solid #fff;
+    transform: translateZ(0); /* Force GPU masking for smooth edges during zoom */
 }
-.img-wrapper img {
-    width: 100%; height: 60vh;
+.custom-gallery-slide .img-wrapper img {
+    height: 65vh;
+    width: 100%;
+    display: block;
     object-fit: cover;
-    transition: transform 1.5s ease;
+    transition: transform 0.8s ease;
 }
-.swiper-slide-active:hover .img-wrapper img {
+.custom-gallery-slide:hover .img-wrapper img {
     transform: scale(1.05);
 }
 .slide-info {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 25px;
 }
-.slide-info h4 { font-size: 1.2rem; letter-spacing: 3px; }
-
-/* Amenities */
-.amenities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-}
-.amenity-card {
-    background: var(--clr-bg-dark-deep);
-    padding: 40px 30px;
-    border-radius: 12px;
+.img-description {
+    color: #000;
     text-align: center;
-    border: 1px solid var(--clr-border);
-    transition: var(--transition-fast);
+    font-family: 'Michroma', sans-serif;
+    font-size: clamp(16px, 2vw, 20px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: 45px;
+    text-transform: uppercase;
 }
-.amenity-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--clr-primary);
-    box-shadow: 0 10px 30px rgba(199, 43, 43, 0.1);
+/* Re-style pagination */
+.gallery-slider .swiper-pagination {
+    position: relative;
+    margin-top: 40px;
 }
-.amenity-card h4 { margin-bottom: 15px; font-size: 1.1rem; }
-.amenity-card p { font-size: 0.95rem; color: var(--clr-text-muted); }
+.gallery-slider .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background: #D9D9D9;
+    opacity: 1;
+    border-radius: 0;
+    margin: 0 6px !important;
+}
+.gallery-slider .swiper-pagination-bullet-active {
+    background: #E52E2D; /* Deep Red */
+}
+
+/* Amenities Section Redesign (Navy Block UI) */
+.amenities-section {
+    position: relative;
+    padding: 120px 0;
+    background-color: #05081C; /* Deep Navy Blue */
+    color: #fff;
+    overflow: hidden;
+}
+.amenities-section .container {
+    position: relative;
+    z-index: 2;
+}
+.amenities-grid-new {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px; /* Minimal gaps matching reference */
+    padding-top: 10px;
+}
+/* 3D Flip Card Structures */
+.amenity-item {
+    aspect-ratio: 1 / 1;
+    perspective: 1000px; /* Essential depth parameter for physical flip */
+    background: transparent;
+    cursor: default;
+}
+.amenity-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+}
+.amenity-front, .amenity-back {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 15px;
+    transition: box-shadow 0.4s ease, background 0.4s ease, transform 0.4s ease;
+}
+.amenity-back {
+    transform: rotateY(180deg);
+}
+
+.amenity-front i, .amenity-back i {
+    color: #05081C;
+    font-size: 2rem;
+    transition: color 0.4s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.amenity-front span, .amenity-back span {
+    font-family: 'Michroma', sans-serif;
+    font-size: clamp(9px, 1vw, 12px);
+    font-weight: 400;
+    line-height: 1.4;
+    text-transform: uppercase;
+    color: #111;
+    letter-spacing: 0.5px;
+    transition: color 0.4s ease;
+}
+
+/* Hover Effect: Red Accent Pop on active face */
+.amenity-item:hover .amenity-front, 
+.amenity-item:hover .amenity-back {
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+    background: #E52E2D; /* Red background on hover */
+}
+.amenity-item:hover .amenity-inner {
+    /* Slight lift mechanics */
+    transform: translateY(-8px);
+}
+/* Ensure the flipped card stays flipped while hovering */
+.amenity-item.is-flipped:hover .amenity-inner {
+    transform: translateY(-8px) rotateY(180deg);
+}
+
+.amenity-item:hover i {
+    color: #fff;
+    transform: scale(1.15) translateY(-3px);
+}
+.amenity-item:hover span {
+    color: #fff;
+}
+.hidden-spacer {
+    display: none; /* No longer needed for solid square grid flow */
+}
+
+@media (max-width: 1200px) {
+    .amenities-grid-new { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 768px) {
+    .amenities-grid-new { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 480px) {
+    .amenities-grid-new { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+}
 
 /* Location Section */
 .location-section {

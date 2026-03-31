@@ -76,10 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.querySelector('.gallery-slider')) {
         new Swiper('.gallery-slider', {
             slidesPerView: 1,
-            spaceBetween: 30,
-            centeredSlides: true,
+            spaceBetween: 0,
+            centeredSlides: false,
             loop: true,
-            speed: 800,
+            speed: 1200,
             autoplay: {
                 delay: 4000,
                 disableOnInteraction: false,
@@ -88,16 +88,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 el: '.swiper-pagination',
                 clickable: true,
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
             breakpoints: {
                 640: {
-                    slidesPerView: 1.5,
+                    slidesPerView: 2,
                 },
                 1024: {
-                    slidesPerView: 2.5,
+                    slidesPerView: 3,
                 }
             }
         });
@@ -136,11 +132,86 @@ document.addEventListener("DOMContentLoaded", () => {
     function initAnimations() {
         gsap.registerPlugin(ScrollTrigger);
 
+        // --- Mouse Parallax Effect ---
+        const skyScreen = document.querySelector('.screen-sky');
+        if (skyScreen) {
+            skyScreen.addEventListener('mousemove', (e) => {
+                const { clientX, clientY } = e;
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                const moveX = (clientX - centerX) / 40; 
+                const moveY = (clientY - centerY) / 40;
+                
+                // Gently shift text wrapper
+                gsap.to(".text-parallax-wrapper", {
+                    x: moveX * 0.5,
+                    y: moveY * 0.5,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+
+                // Dramatically shift kite wrapper opposite of mouse (depth effect)
+                gsap.to(".kite-parallax-wrapper", {
+                    x: moveX * -2,
+                    y: moveY * -2,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+        }
+
         // Hero Sky Sequence
         const tl = gsap.timeline();
-        // Since loader hides via yPercent, we animate hero content up
-        tl.fromTo(".screen-sky .main-headline", {y: 40, opacity: 0}, {y: 0, opacity: 1, duration: 1, ease: "power3.out"}, "-=0.2")
-          .fromTo(".scroll-explore", {opacity: 0}, {opacity: 1, duration: 1}, "-=0.5");
+        
+        // Kite taking off dynamically from the bottom right
+        tl.fromTo(".reveal-kite", 
+            {x: 400, y: 400, rotationZ: 45, opacity: 0}, 
+            {
+                x: 0, y: 0, rotationZ: 0, opacity: 1, 
+                duration: 3, 
+                ease: "power2.out",
+                onComplete: () => {
+                    // Aggressive, dynamic drifting and pulling flight logic
+                    gsap.to(".reveal-kite", {
+                        y: "-=120",
+                        x: "-=80",
+                        rotationZ: -12,
+                        scale: 1.05,
+                        duration: 4.5,
+                        yoyo: true,
+                        repeat: -1,
+                        ease: "sine.inOut"
+                    });
+                }
+            }, 
+            0
+        )
+        // Sweeping fly-in effect for the main text
+        .fromTo(".screen-sky .main-headline", 
+            {y: 150, z: -200, scale: 0.7, opacity: 0}, 
+            {
+                y: 0, 
+                z: 0, 
+                scale: 1,
+                opacity: 1, 
+                duration: 2, 
+                ease: "power4.out",
+                onComplete: () => {
+                    // Flight drifting in the clouds continuous loop
+                    gsap.to(".screen-sky .main-headline", {
+                        y: -15,
+                        x: 10,
+                        rotationZ: 1, /* Slight aerodynamic tilt loop */
+                        duration: 4,
+                        ease: "sine.inOut",
+                        yoyo: true,
+                        repeat: -1
+                    });
+                }
+            }, 
+            "-=0.2"
+        )
+        .fromTo(".scroll-explore", {opacity: 0}, {opacity: 1, duration: 1}, "-=0.5");
 
         // Parallax for Banner 1 Text
         gsap.to(".screen-sky .hero-content", {
@@ -229,14 +300,94 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         });
 
-        // Stagger Reveals (Amenities grid)
+        // Dynamic Amenities Grid Initialization
+        const gridContainer = document.getElementById('dynamic-amenities-grid');
+        if (gridContainer) {
+            const allAmenities = [
+                { icon: 'fa-person-swimming', text: 'SWIMMING POOL' },
+                { icon: 'fa-child-reaching', text: 'KIDS POOL' },
+                { icon: 'fa-person-snowboarding', text: 'KIDS PLAY AREA' },
+                { icon: 'fa-person-biking', text: 'CYCLING' },
+                { icon: 'fa-dumbbell', text: 'GYM' },
+                { icon: 'fa-table-tennis-paddle-ball', text: 'PICKLE BALL' },
+                { icon: 'fa-person-walking', text: 'REFLEXOLOGY WALK WAY' },
+                { icon: 'fa-person-running', text: 'JOGGING' },
+                { icon: 'fa-spa', text: 'SPA/SAUNA/SALON' },
+                { icon: 'fa-book-open', text: 'LIBRARY' },
+                { icon: 'fa-bridge', text: 'SKY WALK' },
+                { icon: 'fa-martini-glass', text: 'POOL PARTY AREA' },
+                { icon: 'fa-gamepad', text: 'INDOOR GAMES' },
+                { icon: 'fa-golf-ball-tee', text: 'MINI GOLF' },
+                { icon: 'fa-microphone-lines', text: 'PERFOMANCE AREA' },
+                { icon: 'fa-mug-hot', text: 'CAFE' },
+                { icon: 'fa-users-rectangle', text: 'MULTI PURPOSE HALL' },
+                { icon: 'fa-chalkboard-user', text: 'BOARD ROOM' },
+                { icon: 'fa-laptop-code', text: 'WORK STATIONS' },
+                { icon: 'fa-couch', text: 'LUXURY LOUNGE' },
+                { icon: 'fa-bench-tree', text: 'OUTDOOR SITTING' },
+                { icon: 'fa-hands-praying', text: 'PRAYER AREA' }
+            ];
+
+            // Setup tracking queues
+            let activePool = [...allAmenities].slice(0, 12);
+            let inactivePool = [...allAmenities].slice(12);
+
+            // Construct 12 initial physical 3D elements dynamically
+            activePool.forEach((item) => {
+                gridContainer.insertAdjacentHTML('beforeend', `
+                    <div class="amenity-item reveal-stagger-item">
+                        <div class="amenity-inner">
+                            <div class="amenity-front">
+                                <i class="fa-solid ${item.icon}"></i>
+                                <span>${item.text}</span>
+                            </div>
+                            <div class="amenity-back">
+                                <i class="fa-solid fa-spinner"></i>
+                                <span>LOADING</span>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            });
+
+            // Engage 3D Swap physics engine every 2.5 seconds
+            setInterval(() => {
+                const randomSlotIndex = Math.floor(Math.random() * 12);
+                const slotEl = gridContainer.children[randomSlotIndex];
+                
+                const inactiveIndex = Math.floor(Math.random() * inactivePool.length);
+                const newItem = inactivePool[inactiveIndex];
+                const oldItem = activePool[randomSlotIndex];
+                
+                // Swap in tracking matrices
+                activePool[randomSlotIndex] = newItem; 
+                inactivePool[inactiveIndex] = oldItem; 
+                
+                const inner = slotEl.querySelector('.amenity-inner');
+                const isFlipped = slotEl.classList.contains('is-flipped');
+                const targetFace = slotEl.querySelector(isFlipped ? '.amenity-front' : '.amenity-back');
+                
+                // Inject new payload behind the active face instantly before rotation
+                targetFace.innerHTML = `<i class="fa-solid ${newItem.icon}"></i><span>${newItem.text}</span>`;
+                
+                gsap.to(inner, {
+                    rotationY: isFlipped ? 0 : 180,
+                    duration: 0.8,
+                    ease: "back.out(1.2)"
+                });
+                
+                slotEl.classList.toggle('is-flipped');
+            }, 2500);
+        }
+
+        // Stagger Reveals (Amenities grid dynamic nodes mapping)
         const staggers = document.querySelectorAll('.reveal-stagger');
         staggers.forEach(grid => {
-            const cards = grid.children;
+            const cards = Array.from(grid.children).filter(child => !child.classList.contains('hidden-spacer'));
             gsap.fromTo(cards, 
-                { y: 40, opacity: 0 },
+                { y: 30, opacity: 0, scale: 0.95 },
                 {
-                    y: 0, opacity: 1, duration: 0.8, stagger: 0.2,
+                    y: 0, opacity: 1, scale: 1, duration: 0.6, stagger: 0.05,
                     scrollTrigger: { trigger: grid, start: "top 85%" }
                 }
             );
