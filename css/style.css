@@ -895,6 +895,28 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     z-index: 2;
 }
+
+/* Explicit Amenities Typography Constraints */
+.amenities-section .section-title {
+    color: #FFF;
+    font-family: 'Michroma', sans-serif;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 50px; /* 111.111% */
+    text-transform: uppercase;
+}
+.amenities-section .section-title .text-red {
+    color: #E52E2D;
+}
+.amenities-section .amenities-subtitle {
+    color: #FFF;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 31px; /* 172.222% */
+}
 .amenities-grid-new {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
