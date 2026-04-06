@@ -732,6 +732,83 @@ h1, h2, h3, h4, h5, h6 {
     color: #222;
 }
 
+/* Credentials Section (Under Master Plan) */
+.credentials-section {
+    background-color: #050514; /* Match image background closely */
+    padding: 80px 0;
+    width: 100%;
+}
+
+.container-credentials {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.cred-col {
+    text-align: left;
+    flex: 1;
+}
+
+.cred-value {
+    color: #E52E2D; /* Vibrant Red */
+    font-family: 'Michroma', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    margin: 0;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.cred-unit {
+    color: #fff;
+    font-size: 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cred-label {
+    color: #a0a0a0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+    margin-top: 15px;
+}
+
+@media (max-width: 1200px) {
+    .cred-value {
+        font-size: 2.8rem;
+    }
+    .cred-unit {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 991px) {
+    .container-credentials {
+        flex-wrap: wrap;
+        gap: 40px 20px;
+    }
+    .cred-col {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+@media (max-width: 576px) {
+    .cred-col {
+        flex: 0 0 100%;
+        text-align: center;
+    }
+    .cred-value {
+        justify-content: center;
+    }
+}
+
+
 /* Vision */
 .vision-section {
     min-height: 60vh;
@@ -1117,6 +1194,86 @@ select.form-control option { color: #000; }
 }
 
 /* ==========================================================================
+   Video Section
+   ========================================================================== */
+.video-section {
+    padding: 120px 0;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+}
+
+.video-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 0; /* Changed from rounded to flat */
+    overflow: hidden;
+    transform-origin: center center;
+    box-shadow: none; /* Changed from drop shadow to plain */
+}
+
+.video-inner {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* Let video-overlay catch events */
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: none; /* Hide default cursor */
+}
+
+.video-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+    background-color: #ba0a0a; /* Bold Red */
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 1.2rem;
+    font-family: var(--font-head);
+    letter-spacing: 2px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+    transition: opacity 0.3s ease;
+}
+
+.video-cursor.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    /* GSAP will control movement, so no transform transition once active to avoid lag */
+}
+
+.cursor-icon i {
+    pointer-events: none;
+}
+
+/* ==========================================================================
    Responsive Queries
    ========================================================================== */
 @media (max-width: 991px) {
@@ -1209,5 +1366,293 @@ select.form-control option { color: #000; }
     }
     .legend-list li, .legend-list-alpha li {
         margin-bottom: 10px;
+    }
+}
+
+/* New Location Block Updates */
+.bg-light-custom {
+    background-color: #F4F4F5;
+}
+.loc-title-custom {
+    color: #070A27;
+    margin-bottom: 20px;
+    font-size: clamp(32px, 4vw, 55px);
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+.custom-connectivity {
+    list-style: none;
+    padding: 0;
+    margin: 40px 0 0 0;
+}
+.custom-connectivity li {
+    font-size: 1.15rem;
+    color: #222;
+    margin-bottom: 25px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.custom-connectivity li i {
+    width: 25px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* Custom Contact Block Redesign */
+.bg-dark-custom-contact {
+    background-color: #0B0A11; /* Very dark slate navy */
+    padding: 100px 0;
+}
+.custom-contact-details {
+    margin-top: 60px;
+}
+.cd-item-inline {
+    display: flex;
+    align-items: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1rem;
+}
+.cd-icon-label {
+    display: inline-flex;
+    align-items: center;
+    color: #a0a0a0;
+    min-width: 120px; /* Forces exact common spacing */
+}
+.cd-icon-label i {
+    width: 25px;
+    text-align: left;
+    margin-right: 10px;
+}
+.contact-link {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 10px;
+}
+.contact-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin: 25px 0;
+    max-width: 400px;
+}
+
+.premium-form-custom {
+    background-color: #030206; /* darker backdrop */
+    padding: 50px;
+}
+.form-group-custom {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.form-group-custom label {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.form-control-custom {
+    background-color: #0B0A11;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    color: #fff;
+    font-size: 1rem;
+    transition: 0.3s ease;
+}
+.form-control-custom:focus {
+    outline: none;
+    border-color: #E52E2D;
+}
+.btn-submit-custom {
+    background-color: #ba0a0a;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 18px;
+    font-size: 1rem;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.btn-submit-custom:hover {
+    background-color: #E52E2D;
+}
+
+/* Custom Image Footer Redesign */
+.footer-image-section {
+    position: relative;
+    padding: 100px 0 60px;
+    color: #fff;
+    text-align: center;
+    overflow: hidden;
+    min-height: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.footer-bg-image {
+    position: absolute;
+    top: -15%; left: 0; width: 100%; height: 130%;
+    z-index: -1;
+}
+.footer-bg-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.footer-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    /* Very subtle gradient, just to ensure text readability over the bright sky */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.4) 100%);
+}
+.footer-centered-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-top-text p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 0;
+    color: #e5e5e5;
+    letter-spacing: 0.5px;
+}
+
+.footer-huge-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.footer-skye-img {
+    width: 100%;
+    max-width: 800px; /* Big enough to match the design */
+    height: auto;
+    filter: brightness(0) invert(1); /* Ensure it's purely white regardless of source */
+    transform: scale(1.1); /* Slightly enlarge to mimic typography impact */
+}
+.footer-credits p {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.75);
+    letter-spacing: 1px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.footer-socials a {
+    transition: 0.3s transform ease, 0.3s filter ease;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer-socials a:hover {
+    transform: translateY(-3px);
+    filter: brightness(0.8);
+}
+.social-icon-img {
+    width: 45px;
+    height: 45px;
+}
+
+.footer-rera {
+    text-align: center;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.rera-label, .rera-number, .rera-link {
+    margin: 0;
+}
+.rera-label {
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    color: #fff;
+    margin-bottom: 2px;
+}
+.rera-number {
+    font-size: 1rem;
+    letter-spacing: 1.5px;
+    color: #fff;
+}
+.rera-link {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.6);
+}
+
+/* Floating Action Buttons */
+.floating-actions {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999;
+}
+.fab {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    background: transparent;
+}
+.fab:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+.fab img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Mobile Tweaks For New Elements */
+@media (max-width: 768px) {
+    .premium-form-custom {
+        padding: 30px 20px;
+    }
+    .footer-image-section {
+        min-height: 60vh;
+        padding: 80px 0 50px;
+    }
+    .cd-item-inline {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    .cd-icon-label {
+        min-width: auto;
+    }
+    .custom-contact-details {
+        margin-top: 30px;
+    }
+    .floating-actions {
+        bottom: 20px;
+        right: 20px;
+        gap: 10px;
+    }
+    .fab {
+        width: 50px;
+        height: 50px;
     }
 }

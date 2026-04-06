@@ -40,10 +40,12 @@
                 <span class="bar"></span>
             </div>
             <nav class="nav-links">
-                <a href="#about" class="nav-link">RESIDENCES</a>
+                <a href="#about" class="nav-link">ABOUT US</a>
                 <a href="#master-plan" class="nav-link">MASTER PLAN</a>
                 <a href="#gallery" class="nav-link">GALLERY</a>
                 <a href="#amenities" class="nav-link">AMENITIES</a>
+                <a href="#location" class="nav-link">LOCATION</a>
+                <a href="#contact" class="nav-link">CONTACT</a>
             </nav>
             <div class="nav-cta">
                 <a href="#contact" class="btn btn-white-outline nav-cta-btn">CONNECT US <span class="plus-icon">+</span></a>
@@ -93,7 +95,7 @@
                     
                     <h3 class="hero-tagline-new reveal-up mt-3">INDIA'S FIRST INTENT - <br> BASED RESIDENTIAL <br> DEVELOPMENT</h3>
                     
-                    <a href="#about" class="btn btn-white-outline reveal-up mt-2">CONNECT US <span class="plus-icon">+</span></a>
+                    <a href="#contact" class="btn btn-white-outline reveal-up mt-2">CONNECT US <span class="plus-icon">+</span></a>
                 </div>
             </div>
         </section>
@@ -191,6 +193,33 @@
                             <li><span>C7.</span> CLOUD VII RESIDENCES (A-N)</li>
                         </ul>
                     </div>
+                </div>
+            </div>
+        </section>
+        </section>
+
+        <!-- Credentials Section [NEW] -->
+        <section id="credentials" class="credentials-section">
+            <div class="container container-credentials">
+                <div class="cred-col">
+                    <h3 class="cred-value"><span class="counter" data-target="16">0</span> <span class="cred-unit">%</span></h3>
+                    <p class="cred-label">Annual Returns</p>
+                </div>
+                <div class="cred-col">
+                    <h3 class="cred-value"><span class="counter" data-target="10">0</span> <span class="cred-unit">LAKH</span></h3>
+                    <p class="cred-label">Minimum Investment</p>
+                </div>
+                <div class="cred-col">
+                    <h3 class="cred-value"><span class="counter" data-target="4">0</span> <span class="cred-unit">YEARS</span></h3>
+                    <p class="cred-label">Investment Period</p>
+                </div>
+                <div class="cred-col">
+                    <h3 class="cred-value"><span class="counter-float" data-target="8.13">0.00</span> <span class="cred-unit">ACRE</span></h3>
+                    <p class="cred-label">Area</p>
+                </div>
+                <div class="cred-col">
+                    <h3 class="cred-value"><span class="counter-float" data-target="2.5">0.0</span> <span class="cred-unit">L SQ.FT</span></h3>
+                    <p class="cred-label">Build Area</p>
                 </div>
             </div>
         </section>
@@ -329,73 +358,82 @@
             </div>
         </section>
 
-        <!-- Location Section [NEW] -->
-        <section id="location" class="section location-section">
-            <div class="container dual-col vertical-center">
-                <div class="location-map reveal-side">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125323.0078027732!2d76.8837119283733!3d8.500243423528264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bbb805bbcd47%3A0x15439fab5c5c81cb!2sThiruvananthapuram%2C%20Kerala!5e0!3m2!1sen!2sin!4v1711818290000!5m2!1sen!2sin" width="100%" height="450" style="border:0; border-radius: 12px; filter: grayscale(80%) invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <!-- Video Section [NEW] -->
+        <section id="amenities-video" class="video-section">
+            <div class="video-container text-center" id="video-wrapper">
+                <div class="video-inner" id="video-inner">
+                    <video id="native-video" poster="images/video-bg.png" src="https://cdn.coverr.co/videos/coverr-skyscrapers-and-clouds-2226/1080p.mp4" autoplay muted loop playsinline class="bg-video"></video>
+                    <div class="video-overlay" id="video-overlay"></div>
                 </div>
-                <div class="location-text pd-left reveal-side-right">
-                    <h2 class="section-title">STRATEGIC <br><span class="text-red">LOCATION</span></h2>
-                    <p class="mt-4 mb-4">Located in the most sought-after upscale neighborhood, giving you immediate access to top schools, premium hospitals, and prime business centers, yet secluded enough for absolute tranquility.</p>
+            </div>
+            <!-- Custom Controller Cursor -->
+            <div class="video-cursor" id="video-cursor">
+                <span class="cursor-icon" id="cursor-icon">PLAY</span>
+            </div>
+        </section>
+
+        <!-- Location Section [NEW] -->
+        <section id="location" class="section location-section bg-light-custom">
+            <div class="container dual-col">
+                <div class="loc-left reveal-side">
+                    <h2 class="section-title loc-title-custom">STRATEGIC <br><span class="text-red">LOCATION</span></h2>
                     
-                    <ul class="connectivity-list">
-                        <li><i class="fa-solid fa-plane"></i> International Airport - 15 Mins</li>
-                        <li><i class="fa-solid fa-building"></i> IT Park & Business Hub - 10 Mins</li>
-                        <li><i class="fa-solid fa-hospital"></i> Multi-Specialty Hospital - 5 Mins</li>
-                        <li><i class="fa-solid fa-user-graduate"></i> Premium Schools - 5 Mins</li>
+                    <div class="location-map mt-4">
+                        <iframe src="https://maps.google.com/maps?q=11.293978,75.8581159&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div class="loc-right reveal-side-right" style="padding-top: 15px;">
+                    <p class="mt-2 mb-5 text-muted" style="line-height: 1.8; font-size: 1.05rem;">Located in the most sought-after upscale neighborhood, giving you immediate access to top schools, premium hospitals, and prime business centers, yet secluded enough for absolute tranquility.</p>
+                    
+                    <ul class="connectivity-list custom-connectivity">
+                        <li><i class="fa-solid fa-plane text-red"></i> International Airport - 15 Mins</li>
+                        <li><i class="fa-solid fa-building text-red"></i> IT Park & Business Hub - 10 Mins</li>
+                        <li><i class="fa-solid fa-hospital text-red"></i> Multi-Specialty Hospital - 5 Mins</li>
+                        <li><i class="fa-solid fa-graduation-cap text-red"></i> Premium Schools - 5 Mins</li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section [NEW] -->
-        <section id="contact" class="section contact-section bg-dark">
+        <section id="contact" class="section contact-section bg-dark-custom-contact">
             <div class="container dual-col">
                 <div class="contact-info reveal-side">
-                    <h2 class="section-title text-light mb-4">REGISTER <br>YOUR <span class="text-red">INTEREST</span></h2>
-                    <p class="text-muted mb-5">Leave us your details and our luxury consultant will get in touch with you shortly to schedule an exclusive preview.</p>
+                    <h2 class="section-title text-light mb-4" style="line-height: 1.1;">REGISTER YOUR <br><span class="text-red">INTEREST</span></h2>
+                    <p class="text-muted mb-5" style="max-width: 420px; font-size: 0.95rem; line-height: 1.7;">Leave us your details and our luxury consultant will get in touch with you shortly to schedule an exclusive preview.</p>
                     
-                    <div class="contact-details">
-                        <div class="cd-item mb-4">
-                            <i class="fa-solid fa-phone text-red mr-3"></i>
-                            <div>
-                                <h5>Call Us</h5>
-                                <p>+91 98765 43210</p>
-                            </div>
+                    <div class="contact-details custom-contact-details mt-5">
+                        <div class="cd-item-inline">
+                            <span class="cd-icon-label"><i class="fa-solid fa-phone text-red"></i> Call Us:</span>
+                            <a href="tel:+919876543210" class="contact-link">+91 98765 43210</a>
                         </div>
-                        <div class="cd-item mb-4">
-                            <i class="fa-solid fa-envelope text-red mr-3"></i>
-                            <div>
-                                <h5>Email Us</h5>
-                                <p>enquiry@theskye.in</p>
-                            </div>
+                        <hr class="contact-divider">
+                        <div class="cd-item-inline">
+                            <span class="cd-icon-label"><i class="fa-solid fa-envelope text-red"></i> Email Us:</span>
+                            <a href="mailto:enquiry@theskye.in" class="contact-link">enquiry@theskye.in</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contact-form-wrapper reveal-side-right">
-                    <form id="leadForm" class="premium-form">
-                        <div class="form-group">
-                            <input type="text" id="name" class="form-control" placeholder="Full Name*" required>
+                    <form id="leadForm" class="premium-form-custom">
+                        <div class="form-group-custom">
+                            <label>Your name</label>
+                            <input type="text" id="name" class="form-control-custom" required>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="email" class="form-control" placeholder="Email Address*" required>
+                        <div class="form-group-custom">
+                            <label>Your email</label>
+                            <input type="email" id="email" class="form-control-custom" required>
                         </div>
-                        <div class="form-group">
-                            <input type="tel" id="phone" class="form-control" placeholder="Phone Number*" required>
+                        <div class="form-group-custom">
+                            <label>Phone number</label>
+                            <input type="tel" id="phone" class="form-control-custom" required>
                         </div>
-                        <div class="form-group">
-                            <select id="interest" class="form-control" required>
-                                <option value="" disabled selected>Unit Type*</option>
-                                <option value="3bhk">3 BHK Luxury Villa</option>
-                                <option value="4bhk">4 BHK Premium Villa</option>
-                            </select>
+                        <div class="form-group-custom">
+                            <label>Message</label>
+                            <textarea id="message" class="form-control-custom" rows="3"></textarea>
                         </div>
-                        <div class="form-group">
-                            <textarea id="message" class="form-control" rows="3" placeholder="Additional Message (Optional)"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-100 mt-2">SUBMIT ENQUIRY</button>
+                        <button type="submit" class="btn-submit-custom mt-2">SUBMIT MESSAGE</button>
                     </form>
                 </div>
             </div>
@@ -403,51 +441,37 @@
     </main>
 
     <!-- Footer [NEW] -->
-    <footer class="footer bg-dark-deep">
-        <div class="container footer-grid">
-            <div class="footer-col brand-col">
-                <h3 class="footer-brand mb-3">THE SKYE</h3>
-                <p class="text-muted small">India's First Intent-Based Residential Development. A legacy of luxury by Castor.</p>
-                <div class="social-links mt-4">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-col links-col">
-                <h4 class="footer-heading">Quick Links</h4>
-                <ul class="footer-links">
-                    <li><a href="#about">About Project</a></li>
-                    <li><a href="#master-plan">Master Plan</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#amenities">Amenities</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col legal-col">
-                <h4 class="footer-heading">Legal</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Disclaimer</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-col rera-col">
-                <div class="rera-box">
-                    <h5 class="text-light">RERA NO</h5>
-                    <p class="text-red fw-bold">K-RERA/PRJ/TVM/000/2024</p>
-                    <p class="small text-muted mt-2">Available at rera.kerala.gov.in</p>
-                </div>
-            </div>
+    <!-- Beautiful Centered Image Footer [NEW] -->
+    <footer id="footer" class="footer-image-section">
+        <div class="footer-bg-image">
+            <img src="images/Footer-img.png" alt="Footer Background">
+            <div class="footer-overlay"></div>
         </div>
         
-        <div class="footer-bottom">
-            <div class="container flex-between">
-                <p>&copy; 2024 Castor Developments. All rights reserved.</p>
-                <p>Designed for Luxury</p>
+        <div class="container footer-centered-content">
+            <div class="footer-top-text">
+                <p>India's First Intent-Based Residential Development.<br>A legacy of luxury by Castor.</p>
+            </div>
+            
+            <div class="footer-huge-logo text-center mt-5 mb-5">
+                <img src="images/skye-logo.svg" alt="The Skye" class="footer-skye-img">
+            </div>
+            
+            <div class="footer-credits mb-4 mt-3">
+                <p>&copy; 2025 The SKYE. All rights reserved | Developed by Acodez</p>
+            </div>
+            
+            <div class="footer-socials mb-5 mt-2">
+                <a href="#"><img src="images/Facebook.svg" alt="Facebook" class="social-icon-img"></a>
+                <a href="#"><img src="images/X.svg" alt="X" class="social-icon-img"></a>
+                <a href="#"><img src="images/Instagram.svg" alt="Instagram" class="social-icon-img"></a>
+                <a href="#"><img src="images/Youtube.svg" alt="YouTube" class="social-icon-img"></a>
+            </div>
+            
+            <div class="footer-rera mt-2">
+                <h5 class="rera-label">RERA NO</h5>
+                <p class="rera-number">K-RERA/PRJ/TVM/000/2024</p>
+                <p class="rera-link mt-1">Available at rera.kerala.gov.in</p>
             </div>
         </div>
     </footer>
@@ -458,7 +482,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <!-- Swiper -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- YouTube Iframe API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
     <!-- Custom Script -->
     <script src="js/main.js"></script>
+
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <a href="tel:+919876543210" class="fab call-fab" aria-label="Call Us">
+            <img src="images/Call.svg" alt="Call Us">
+        </a>
+        <a href="https://wa.me/919876543210" class="fab wa-fab" aria-label="WhatsApp Us" target="_blank">
+            <img src="images/WhatsApp.svg" alt="WhatsApp Us">
+        </a>
+    </div>
 </body>
 </html>

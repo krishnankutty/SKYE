@@ -405,6 +405,93 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // Video Section Scroll & Cursor Logic
+        const videoSection = document.getElementById('amenities-video');
+        const videoWrapper = document.getElementById('video-wrapper');
+        const videoInner = document.getElementById('video-inner');
+        const videoOverlay = document.getElementById('video-overlay');
+        const videoCursor = document.getElementById('video-cursor');
+        const cursorIcon = document.getElementById('cursor-icon');
+
+        if (videoWrapper && videoSection) {
+            // Custom cursor logic
+            if (videoOverlay && videoCursor) {
+                videoOverlay.addEventListener('mouseenter', () => {
+                    videoCursor.classList.add('active');
+                });
+
+                videoOverlay.addEventListener('mouseleave', () => {
+                    videoCursor.classList.remove('active');
+                });
+
+                videoOverlay.addEventListener('mousemove', (e) => {
+                    // Fixed position elements need raw clientX/Y without offset translation issues
+                    gsap.to(videoCursor, {
+                        x: e.clientX,
+                        y: e.clientY,
+                        duration: 0.1,
+                        ease: "power2.out",
+                        overwrite: "auto"
+                    });
+                });
+
+                videoOverlay.addEventListener('click', () => {
+                    const nativeVideo = document.getElementById('native-video');
+                    if (nativeVideo) {
+                        if (!nativeVideo.paused) {
+                            nativeVideo.pause();
+                            cursorIcon.innerHTML = 'PAUSED';
+                        } else {
+                            nativeVideo.play();
+                            cursorIcon.innerHTML = 'PLAY';
+                        }
+                    }
+                });
+            }
+        }
+
+        // Credentials Section Counters
+        const credSection = document.querySelector('.credentials-section');
+        const counters = document.querySelectorAll('.counter');
+        const floatCounters = document.querySelectorAll('.counter-float');
+
+        if (credSection && window.gsap) {
+            ScrollTrigger.create({
+                trigger: credSection,
+                start: "top 85%",
+                once: true,
+                onEnter: () => {
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target')) || 0;
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 2.5,
+                            ease: "power2.out",
+                            onUpdate: () => {
+                                counter.textContent = Math.floor(obj.val);
+                            }
+                        });
+                    });
+                    
+                    floatCounters.forEach(counter => {
+                        const targetAttr = counter.getAttribute('data-target');
+                        const target = parseFloat(targetAttr) || 0;
+                        const decimals = targetAttr.indexOf('.') > -1 ? targetAttr.split('.')[1].length : 0;
+                        const obj = { val: 0 };
+                        gsap.to(obj, {
+                            val: target,
+                            duration: 2.5,
+                            ease: "power2.out",
+                            onUpdate: () => {
+                                counter.textContent = obj.val.toFixed(decimals);
+                            }
+                        });
+                    });
+                }
+            });
+        }
+
         // Lens Magnifier Effect mapping
         const mapContainer = document.getElementById('mapLensContainer');
         const mapImg = document.getElementById('masterMapImg');
@@ -442,6 +529,24 @@ document.addEventListener("DOMContentLoaded", () => {
             mapContainer.addEventListener('mouseleave', function() {
                 lens.style.display = "none";
             });
+        }
+
+        // Footer Parallax Effect
+        const footerBgImg = document.querySelector('.footer-bg-image img');
+        if (footerBgImg) {
+            gsap.fromTo(footerBgImg, 
+                { yPercent: -15 },
+                {
+                    yPercent: 15,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: ".footer-image-section",
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                }
+            );
         }
     }
 });
